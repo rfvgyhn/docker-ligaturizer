@@ -15,4 +15,9 @@ The following environment variables are available. The values show the defaults 
 
 * `SUFFIX=ligaturized` Suffix to be used when naming the new font (e.g. consola.ttf -> consola-ligaturized.ttf)
 
+# Example
+Ligaturized Consolas
+![Ligaturized Consolas][2]
+
 [1]: https://github.com/ToxicFrog/Ligaturizer
+[2]: screenshots/consolas-ligaturized.png

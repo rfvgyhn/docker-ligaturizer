@@ -17,6 +17,7 @@ The following environment variables are available. The values show the defaults 
 
 # Example
 Ligaturized Consolas
+
 ![Ligaturized Consolas][2]
 
 [1]: https://github.com/ToxicFrog/Ligaturizer

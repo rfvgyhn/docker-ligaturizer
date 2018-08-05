@@ -4,7 +4,7 @@ RUN apk update
 RUN apk add --update --no-cache git
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing fontforge
 
-ENV SUFFIX=ligaturized
+ENV PREFIX=ligaturized
 WORKDIR /usr/local/src
 
 RUN git clone https://github.com/ToxicFrog/Ligaturizer.git /usr/local/src

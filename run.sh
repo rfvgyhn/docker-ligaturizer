@@ -15,6 +15,6 @@ for f in /input/*.[Tt][Tt][Ff] /input/*.[Oo][Tt][Ff] ; do
         style="-$style"
     fi
 
-    fontforge -lang=py ligaturize.py --prefix=$SUFFIX "$f" "/output/$fontname-$SUFFIX$style.$extension" 2>&1 \
+    fontforge -lang=py ligaturize.py --prefix=$PREFIX "$f" "/output/$PREFIX-$fontAndStyle.$extension" 2>&1 \
         | fgrep -v 'This contextual rule applies no lookups.'
 done

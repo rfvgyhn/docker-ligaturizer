@@ -1,22 +1,31 @@
-FROM python:2.7.15-alpine3.6
+FROM python:2.7.15-alpine3.8
+
+ARG FIRA_VERSION=1.206
 
 RUN apk update
-RUN apk add --no-cache git
+RUN apk add --no-cache --virtual build git wget unzip
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing fontforge
 
-ENV PREFIX=ligaturized
+ENV PREFIX=
+ENV OUTPUT_NAME=
+
 WORKDIR /usr/local/src
 
-RUN git clone https://github.com/ToxicFrog/Ligaturizer.git /usr/local/src
-RUN apk del git && \
-    rm /var/cache/apk/* && \
-    mkdir -p /input /output && \
+RUN git clone --depth 1 https://github.com/ToxicFrog/Ligaturizer.git /usr/local/src
+RUN mkdir -p fonts/fira/distr && \
+    wget -O fira.zip https://github.com/tonsky/FiraCode/releases/download/${FIRA_VERSION}/FiraCode_${FIRA_VERSION}.zip && \
+    unzip fira.zip 'otf/*' -d fonts/fira/distr && \
+    rm fira.zip
+
+RUN apk del build && \
+    touch /input && \
+    mkdir -p /output && \
     rm -rf input-fonts && \
     rm -rf output-fonts
 
 COPY run.sh .
 RUN chmod +x run.sh
 
-VOLUME /input /output
+VOLUME /output
 
 CMD ["./run.sh"]

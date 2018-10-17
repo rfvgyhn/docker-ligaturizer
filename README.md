@@ -2,22 +2,23 @@
 Run [ligaturizer][1] via container
 
 # Usage
-Create two directories: `/input` and `/output`. Place all fonts you wish to be ligaturized into `/input`. Create a one time use container and get your new fonts from the `/output` folder.
+Create an output directory called `/output`. Create and run the one time use container and get your new font from the `/output` folder.
 
 ### Bash
-`docker run --rm -v $(pwd)/input:/input -v $(pwd)/output:/output --user $(id -u) rfvgyhn/ligaturizer`
+`docker run --rm -v $(pwd)/your-font.ttf:/input -v $(pwd)/output:/output --user $(id -u) rfvgyhn/ligaturizer`
 
 ### Powershell
-`docker run --rm -v "$($pwd.Path -replace '^|\\+','/' -replace ':')/input:/input" -v "$($pwd.Path -replace '^|\\+','/' -replace ':')/output:/output" rfvgyhn/ligaturizer`
+`docker run --rm -v "$($pwd.Path -replace '^|\\+','/' -replace ':')/your-font.ttf:/input" -v "$($pwd.Path -replace '^|\\+','/' -replace ':')/output:/output" rfvgyhn/ligaturizer`
 
 ## Volumes
-* `/input` All fonts to be ligaturized
-* `/output` Resuliting ligaturized fonts
+* `/input` The font to be ligaturized
+* `/output` Resulting ligaturized font directory
 
 ## Options
 The following environment variables are available. The values show the defaults used if the var isn't specified.
 
-* `PREFIX=ligaturized` Prefix to be used when naming the new font (e.g. consola.ttf -> ligaturized-consola.ttf)
+* `PREFIX=` Prefix to be used when naming the new font (e.g. consola.ttf -> ligaturizedConsolas.ttf)
+* `OUTPUT_NAME=` Resulting font name (defaults to "_fontName_ Ligaturized")
 
 # Example
 Ligaturized Consolas

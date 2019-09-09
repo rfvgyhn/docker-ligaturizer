@@ -1,6 +1,6 @@
 FROM python:2.7.15-alpine3.8
 
-ARG FIRA_VERSION=1.206
+ARG FIRA_VERSION=2
 
 RUN apk update
 RUN apk add --no-cache --virtual build git wget unzip

@@ -1,0 +1,69 @@
+From 3dd57085d4887d9fbc2fdba3c95d3c6e2f193778 Mon Sep 17 00:00:00 2001
+Date: Mon, 30 Sep 2019 13:30:36 -0600
+Subject: [PATCH] use python 3
+
+---
+ build.py      |  2 +-
+ ligaturize.py | 12 ------------
+ stat.py       |  2 --
+ 3 files changed, 1 insertion(+), 15 deletions(-)
+
+diff --git a/build.py b/build.py
+index 69b5d31..78ef079 100644
+--- a/build.py
++++ b/build.py
+@@ -90,7 +90,7 @@ for pattern in prefixed_fonts:
+       copy_character_glyphs=COPY_CHARACTER_GLYPHS,
+       scale_character_glyphs_threshold=SCALE_CHARACTER_GLYPHS_THRESHOLD)
+ 
+-for pattern,name in renamed_fonts.iteritems():
++for pattern,name in renamed_fonts.items():
+   files = glob(pattern)
+   if not files:
+     print("Error: pattern '%s' didn't match any files." % pattern)
+diff --git a/ligaturize.py b/ligaturize.py
+index 6158229..6a0aa6e 100644
+--- a/ligaturize.py
++++ b/ligaturize.py
+@@ -9,8 +9,6 @@
+ #
+ # See ligatures.py for a list of all the ligatures that will be copied.
+ 
+-from __future__ import print_function
+-
+ import fontforge
+ import psMat
+ import os
+@@ -24,16 +22,6 @@ COPYRIGHT = '''
+ Programming ligatures added by Ilya Skriblovsky from FiraCode
+ FiraCode Copyright (c) 2015 by Nikita Prokopov'''
+ 
+-VERSION_MISMATCH = '''
+-Ligaturizer only supports Python 2.x due to a bug in Fontforge:
+-  https://github.com/fontforge/fontforge/issues/3057
+-You will need to install Fontforge for Python 2 to use this script.
+-'''
+-
+-if sys.version_info[0] != 2:
+-    print(VERSION_MISMATCH)
+-    sys.exit(1)
+-
+ def get_ligature_source(fontname):
+     # Become case-insensitive
+     fontname = fontname.lower()
+diff --git a/stat.py b/stat.py
+index 7e4e798..7f0ec25 100644
+--- a/stat.py
++++ b/stat.py
+@@ -9,8 +9,6 @@
+ #
+ # See ligatures.py for a list of all the ligatures that will be copied.
+ 
+-from __future__ import print_function
+-
+ import fontforge
+ import os
+ from os import path
+-- 
+2.23.0
+

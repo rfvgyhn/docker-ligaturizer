@@ -17,6 +17,10 @@ RUN mkdir -p fonts/fira/distr && \
     unzip fira.zip 'otf/*' -d fonts/fira/distr && \
     rm fira.zip
 
+# Patch in python 3 support until PR is merged https://github.com/ToxicFrog/Ligaturizer/pull/68
+COPY python3.patch .
+RUN git apply python3.patch
+
 RUN apk del build && \
     touch /input && \
     mkdir -p /output && \
